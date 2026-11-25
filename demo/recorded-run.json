@@ -1,0 +1,13 @@
+{
+  "date": "2025-06-09",
+  "ticker": "GOOG",
+  "company": "Alphabet Inc.",
+  "currency": "USD",
+  "priceCents": 17492,
+  "forecastCents": 17411,
+  "arimaOrder": [5, 1, 0],
+  "revenueGrowth": 0.12,
+  "grossMargin": 0.58591,
+  "operatingCashFlow": 132601004032,
+  "beta": 1.014
+}
