@@ -2,7 +2,11 @@
 
 **A personal Python project for stock research and time-series forecasting.** I built and ran the original Windows desktop prototype, **Quantum Investor Hub**, in June 2025. It combined market data, company fundamentals, and a statistical price forecast in one ticker-analysis workflow.
 
-**Repository status.** This case study documents the original Tkinter app and its recorded output. Reproducing the run requires the original Python source and workbook, which are currently unavailable.
+[**Open the interactive dashboard**](https://sheldonmbuh.github.io/StockSentinelAI/demo/)
+
+The browser demo reconstructs the ticker-entry and results workflow. Enter `GOOG` to replay the archived session or open the model panel for the original Windows launch command.
+
+**Repository status.** The dashboard and Python replay are new implementations of the recorded workflow. The original Tkinter source and Excel workbook are currently unavailable.
 
 ## What I built
 
@@ -39,6 +43,22 @@ python quantum_investor_hub.py
 | ARIMA(5,1,0) forecast | $174.11 |
 
 The run establishes that the app displayed a quote, fundamentals, beta, and a model estimate for one ticker. The forecast horizon and out-of-sample error remain unknown.
+
+## Run the replay locally
+
+From a clone of this repository, use Python 3 to print the recorded session:
+
+```sh
+python3 replay.py GOOG
+```
+
+To open the dashboard locally, serve the repository and visit `http://localhost:8000/demo/`.
+
+```sh
+python3 -m http.server 8000 --bind 127.0.0.1
+```
+
+The [dashboard script](demo/dashboard.js) and [Python replay](replay.py) read the same [JSON fixture](demo/recorded-run.json). The estimate-minus-price difference uses integer cents, so the recorded values produce exactly `-$0.81`. The dashboard needs no API keys or build step.
 
 ## Technical decisions
 
