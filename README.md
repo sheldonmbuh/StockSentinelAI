@@ -2,7 +2,7 @@
 
 **A personal Python project for stock research and time-series forecasting.** I built and ran the original Windows desktop prototype, **Quantum Investor Hub**, in June 2025. It combined market data, company fundamentals, and a statistical price forecast in one ticker-analysis workflow.
 
-**Project status:** Personal prototype, documented after the original build. This repository is the engineering case study. The historical source and workbook are currently unavailable, so the original application cannot be run from this repository.
+**Repository status.** This case study documents the original Tkinter app and its recorded output. Reproducing the run requires the original Python source and workbook, which are currently unavailable.
 
 ## What I built
 
@@ -23,7 +23,11 @@ flowchart TD
 
 ## Recorded Windows run
 
-On **June 9, 2025**, I launched the project with `python quantum_investor_hub.py` and analyzed `GOOG`. The values below are transcribed from the development record.
+I launched the app on Windows with the command below, entered `GOOG`, and selected **Analyze**. The table records the values shown in the June 9, 2025 development run.
+
+```powershell
+python quantum_investor_hub.py
+```
 
 | Output | Recorded value |
 | --- | ---: |
@@ -34,7 +38,7 @@ On **June 9, 2025**, I launched the project with `python quantum_investor_hub.py
 | Beta | 1.014 |
 | ARIMA(5,1,0) forecast | $174.11 |
 
-This historical run shows the workflow producing results. The forecast horizon and out-of-sample accuracy were not established in the available record.
+The run establishes that the app displayed a quote, fundamentals, beta, and a model estimate for one ticker. The forecast horizon and out-of-sample error remain unknown.
 
 ## Technical decisions
 
@@ -44,8 +48,21 @@ This historical run shows the workflow producing results. The forecast horizon a
 | Market data | Development notes identify Yahoo Finance via `yfinance`. |
 | Forecast | The recorded run produced an ARIMA(5,1,0) forecast from historical prices. |
 | Visualization | I explored Plotly and debugged plotting imports and GUI threading during development. |
-| Other integrations | Google-sourced data, Excel refresh, and OpenAI were part of the broader project work. Their exact behavior in the working build remains unverified. |
+| Google and Excel | I worked with Google-sourced market data and a refreshing Excel workbook. The data connection and workbook refresh steps still need source-level verification. |
+| OpenAI | I experimented with API-assisted news and sentiment analysis. A successful end-to-end run remains unverified. |
 
-I built this to learn how data retrieval, financial calculations, time-series modeling, and a desktop interface fit into a single workflow. The work stayed at the personal prototype stage.
+## Engineering lessons
+
+- **Desktop plotting.** I encountered Plotly import errors and GUI plotting errors related to thread handling. A reliable rebuild would keep network requests and model fitting off the UI thread and send results back to Tkinter for rendering.
+- **Market data preparation.** A Prophet experiment exposed a timezone mismatch in the date column. For any recovered forecasting path, check timestamp normalization, missing observations, and the choice of price series before fitting the model.
+- **Optional AI analysis.** One development run reported a news/AI error involving model availability. If that workflow is recovered, verify the actual API response and check that market data and the statistical forecast remain available when the AI call fails.
+
+## Reproducing the original run
+
+The original script and dependency versions are needed to reproduce the Windows run. The Excel workbook is also needed to verify its refresh mechanism and any links to external data.
+
+1. Recover `quantum_investor_hub.py`, its dependencies, and the original workbook. Review source and workbook connections for credentials before sharing any files.
+2. Run the ticker workflow on Windows and record the data source, price series, training window, model settings, and forecast horizon.
+3. Evaluate the forecast at that horizon with rolling historical splits. Compare its error with a baseline that uses the last observed price.
 
 **Built by [Sheldon Mbuh](https://github.com/sheldonmbuh).** This case study documents historical outputs for educational purposes.
